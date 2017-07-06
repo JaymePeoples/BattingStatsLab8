@@ -47,14 +47,17 @@ public class BattingStats {
                 }
 
             }
-            System.out.println("Batting average: " + (hits / atBats));
+            double batAvg = (hits/atBats);
+            System.out.printf("Batting average: " + "%.3f", batAvg);
+            System.out.println();
 
             double sum = 0;
             for (int i = 0; i < arr.length; i++) {
                 sum += arr[i];
             }
-
-            System.out.println("Slugging Percentage: " + (sum / atBats));
+            double slugPercent = sum/atBats;
+            System.out.printf("Slugging Percentage: " + "%.3f", slugPercent );
+            System.out.println();
             System.out.println("Another batter: (y/n)");
             userChoice=scan.next();
         }
