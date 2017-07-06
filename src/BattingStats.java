@@ -11,49 +11,56 @@ public class BattingStats {
         //3. Display batting average
         //4. Slugging percentage
         Scanner scan = new Scanner(System.in);
-        int atBats = 0;
+        int atBats;
+        String userChoice;
 
-
-        System.out.println("Enter number of times at bat: ");
-        atBats = scan.nextInt();
-
-        while (atBats < 0) {
-            System.out.println("Invalid input. Please enter your number of times at bat: ");
+        do {
+            System.out.println("Enter number of times at bat: ");
             atBats = scan.nextInt();
-        }
 
-        int[] arr = new int[atBats];
-        System.out.println(arr.length);
-        System.out.println("0=out, 1=single, 2=double, 3=triple, 4=home run");
-        int result = 0;
+            while (atBats < 0) {//validates that number is positive
+                System.out.println("Invalid input. Please enter your number of times at bat: ");
+                atBats = scan.nextInt();
+            }
 
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print("Result for at bat " + i + ": ");
-            result = scan.nextInt();
+            int[] arr = new int[atBats];
+            System.out.println(arr.length);
+            System.out.println("0=out, 1=single, 2=double, 3=triple, 4=home run");
+            int result;
 
-            while (result < 0 | result > 4) {
-                System.out.println("Invalid input. Please try again: ");
+            for (int i = 0; i < arr.length; i++) {
+                System.out.print("Result for at bat " + i + ": ");
                 result = scan.nextInt();
-            }
-            arr[i] = result;
-        }
 
-        double hits = 0;
-        for (int j = 0; j < arr.length; j++) {
-            if (arr[j] < 1) {
-            } else {
-                hits = hits + 1;
+                while (result < 0 | result > 4) {//results are for number of bases or an out.
+                    System.out.println("Invalid input. Please try again: ");
+                    result = scan.nextInt();
+                }
+                arr[i] = result;
             }
 
-        }
-        System.out.println("Batting average: " + (hits / atBats));
+            double hits = 0;
+            for (int j = 0; j < arr.length; j++) {//checks for number of hits, any result that is not a zero is a hit
+                if (arr[j] < 1) {//< 1 not a hit
+                } else {
+                    hits = hits + 1;
+                }
 
-        double sum = 0;
-        for (int i = 0; i < arr.length; i++) {
-            sum += arr[i];
-        }
+            }
+            System.out.println("Batting average: " + (hits / atBats));
 
-        System.out.println("Slugging Percentage: " + (sum / atBats));
+            double sum = 0;
+            for (int i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+
+            System.out.println("Slugging Percentage: " + (sum / atBats));
+            System.out.println("Another batter: (y/n)");
+            userChoice=scan.next();
+        }
+        while (userChoice.equalsIgnoreCase("y"));
+            System.out.println("Thanks for your participation.");
+        }
     }
-}
+
 
